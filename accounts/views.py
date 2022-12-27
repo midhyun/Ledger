@@ -9,6 +9,8 @@ from django.contrib import messages
 # Create your views here.
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('main')
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -24,6 +26,8 @@ def signup(request):
     return render(request, 'accounts/signup.html', context)
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('main')
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -38,6 +42,7 @@ def login(request):
     }
     return render(request, 'accounts/login.html', context)
 
+@login_required
 def logout(request):
     auth_logout(request)
     # 로그아웃 메시지

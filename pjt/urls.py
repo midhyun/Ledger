@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.main, name='main'),
     # 회원관리
     path('accounts/', include('accounts.urls')),
+    path('ledgers/', include('ledgers.urls')),
 ]
