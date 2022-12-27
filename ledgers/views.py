@@ -28,6 +28,7 @@ def create(request):
         form = LedgersForm(request.POST)
         if form.is_valid():
             temp = form.save(commit=False)
+            temp.paid_at = request.POST['paid_at']
             temp.user = request.user
             temp.save()
             return redirect('ledgers:index')

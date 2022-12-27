@@ -4,7 +4,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.contrib import messages
 # Create your views here.
 
@@ -29,14 +29,14 @@ def login(request):
     if request.user.is_authenticated:
         return redirect('main')
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect((request.GET.get("next") or request.POST.get("next")) or "main")
         else:
             messages.warning(request, '아이디 또는 비밀번호를 잘못 입력했습니다.')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     context = {
         'form': form
     }

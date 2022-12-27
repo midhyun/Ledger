@@ -9,14 +9,12 @@ class LedgersForm(forms.ModelForm):
             'title',
             'content',
             'paymoney',
-            'paid_at',
         ]
         labels = {
             'categories': '카테고리',
             'title': '제목',
             'content': '내용',
             'paymoney': '금액',
-            'paid_at': '소비일시',
         }
 
 class LedgersUpdateForm(forms.ModelForm):

@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
-
 {% block css %}{% bootstrap_css %}{% endblock css %}
 
 {% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <button class="btn btn-primary" type="submit">login</button>
-</form>
+<div class="card p-5 w-50 m-auto">
+    <h1>Login</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button class="btn btn-primary" type="submit">login</button>
+        <a class="btn btn-outline-primary" href="{% url 'accounts:signup' %}">signup</a>
+    </form>
+</div>
 {% endblock content %}
 
 {% block js %}{% bootstrap_javascript %}{% endblock js %}

@@ -5,11 +5,14 @@
 {% block css %}{% bootstrap_css %}{% endblock css %}
 
 {% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <button class="btn btn-primary" type="submit">submit</button>
-</form>
+<div class="card p-5 w-50 m-auto">
+    <h1>Signup</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button class="btn btn-primary" type="submit">submit</button>
+    </form>
+</div>
 {% endblock content %}
 
 {% block js %}{% bootstrap_javascript %}{% endblock js %}

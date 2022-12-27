@@ -6,9 +6,13 @@
 
 {% block content %}
 <form action="" method="POST">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <button class="btn btn-primary" type="submit">login</button>
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <div class="mb-3">
+    <label class="form-label" for="id_paid_at">소비일시</label>
+    <input type="datetime-local" name="paid_at" class="form-control" placeholder="소비일시" required="" id="id_paid_at">
+  </div>
+  <button class="btn btn-primary" type="submit">submit</button>
 </form>
 {% endblock content %}
 

@@ -19,7 +19,7 @@
       {% for ledger in ledgers %}
         <tr>
           <th scope="row">{{ ledger.categories }}</th>
-          <td>{{ ledger.title }}</td>
+          <td><a href="{% url 'ledgers:detail' ledger.pk%}">{{ ledger.title }}</a></td>
           <td>{{ ledger.paymoney|intcomma }}</td>
           <td>{{ ledger.paid_at|date:'y-m-d H:i'}}</td>
           <td><a href="{% url 'ledgers:update' ledger.pk %}" style="text-decoration:none; color:black; font-weight:bold;">🖊</a> / <a href="{% url 'ledgers:delete' ledger.pk %}" style="text-decoration:none; color:black; font-weight:bold;">🗑</a></td>
