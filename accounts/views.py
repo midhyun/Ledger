@@ -16,6 +16,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
+            messages.success(request, '회원가입이 완료되었습니다.')
             return redirect('main')
 
     else:
@@ -32,6 +33,7 @@ def login(request):
         form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
+            messages.success(request, '로그인 되었습니다.')
             return redirect((request.GET.get("next") or request.POST.get("next")) or "main")
         else:
             messages.warning(request, '아이디 또는 비밀번호를 잘못 입력했습니다.')
