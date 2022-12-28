@@ -7,12 +7,12 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = [
-            'username',
+            'email',
             'password1',
             'password2',
         ]
         labels = {
-            'username': '이메일',
+            'email': '이메일',
             'password1': '비밀번호',
             'password2': '비밀번호확인',
         }

@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from rest_framework import routers
+from accounts.views import UserViewSet
+router = routers.DefaultRouter()
+router.register('user', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +27,7 @@ urlpatterns = [
     # 회원관리
     path('accounts/', include('accounts.urls')),
     path('ledgers/', include('ledgers.urls')),
+    # JWT 인증관리
+    # 토큰발행
+    path('route', include(router.urls)),
 ]

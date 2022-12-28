@@ -6,6 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.contrib import messages
+# JWT 인증관련
+import requests
 # Create your views here.
 
 def signup(request):
@@ -50,3 +52,15 @@ def logout(request):
     # 로그아웃 메시지
     messages.warning(request, '로그아웃 하였습니다.')
     return redirect("accounts:login")
+
+# 임시 JWT 로그인 확인용
+from rest_framework import viewsets
+from rest_framework import serializers
+from accounts.models import User
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = "__all__"
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
