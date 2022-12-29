@@ -9,6 +9,7 @@ urlpatterns = [
     path('<int:ledger_pk>/update', views.update, name='update'),
     path('<int:ledger_pk>/delete', views.delete, name='delete'),
     path('<int:ledger_pk>/detail', views.detail, name='detail'),
+    # 가계부 복제
     path('<int:ledger_pk>/replica', views.replica, name='replica'),
 
 ]

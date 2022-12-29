@@ -11,7 +11,7 @@ utc=pytz.UTC
 
 def main(request):
     return render(request, 'main.html')
-
+# 단축 URL 입력시 기존 URL Redirect
 def original(request, new_url):
     new_link = settings.SITE_URL + new_url
     url = Url.objects.get(new_link=new_link)

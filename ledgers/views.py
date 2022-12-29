@@ -78,6 +78,8 @@ def detail(request, ledger_pk):
 @login_required
 def replica(request, ledger_pk):
     ledger = get_object_or_404(Ledgers, pk=ledger_pk)
+    if checkuser(request, ledger):
+        return redirect('main')
     ledger.pk = None
     ledger.save()
     return redirect('ledgers:index')
