@@ -25,4 +25,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     # 가계부
     path('ledgers/', include('ledgers.urls')),
+    path('shortener/', include('shortener.urls')),
+    path('<new_url>/', views.original, name='original'),
 ]

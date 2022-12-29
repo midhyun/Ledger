@@ -4,12 +4,11 @@ from django.contrib.auth import authenticate
 from .models import Ledgers
 from .forms import LedgersForm, LedgersUpdateForm
 from django.contrib import messages
-# Create your views here.
 
 # 인증된 유저가 작성한 가계부가 아닐 경우 메시지 출력
 def checkuser(request, ledger):
     if ledger.user != request.user:
-        messages.warning('접근 권한이 없습니다.')
+        messages.warning(request, '접근 권한이 없습니다.')
         return True
     return False
 
@@ -75,3 +74,10 @@ def detail(request, ledger_pk):
         'ledger': ledger
     }
     return render(request, 'ledgers/detail.html', context)
+
+@login_required
+def replica(request, ledger_pk):
+    ledger = get_object_or_404(Ledgers, pk=ledger_pk)
+    ledger.pk = None
+    ledger.save()
+    return redirect('ledgers:index')

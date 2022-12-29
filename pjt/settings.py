@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'accounts',
     # 가계부
     'ledgers',
+    # 단축 URL
+    'shortener',
     'django_extensions',
     'django_bootstrap5',
     # 자릿수 표기를 위한 내장기능사용
@@ -64,6 +66,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+SITE_URL = 'localhost:8000/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,7 +145,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

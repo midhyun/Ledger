@@ -9,4 +9,6 @@ urlpatterns = [
     path('<int:ledger_pk>/update', views.update, name='update'),
     path('<int:ledger_pk>/delete', views.delete, name='delete'),
     path('<int:ledger_pk>/detail', views.detail, name='detail'),
+    path('<int:ledger_pk>/replica', views.replica, name='replica'),
+
 ]

@@ -12,7 +12,6 @@ from django.contrib import messages
 import requests
 import json
 from datetime import timedelta
-# Create your views here.
 
 def signup(request):
     if request.user.is_authenticated:
@@ -35,32 +34,29 @@ def signup(request):
 url = 'http://localhost:8000/accounts/dj_rest_auth/login/'
 headers = {'Content-Type': "application/x-www-form-urlencoded"}
 
-
+# 세션로그인
 def login(request):
     result = {}
     if request.user.is_authenticated:
         return redirect('main')
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            data = {
-                "username": "",
-                "email": request.POST['username'],
-                "password": request.POST['password'],
-            }
-            res = requests.post(url, headers=headers, data=data).json()
-            print(res)
-            result['my-app-auth'] = res['access_token']
-            result['my-refresh-token'] = res['refresh_token']
-            result['user'] = res['user']['email']
-            return JsonResponse(result, status=HTTPStatus.OK)
+        # rest api POST 요청 후 쿠키 리턴
         # form = AuthenticationForm(request, data=request.POST)
         # if form.is_valid():
-        #     auth_login(request, form.get_user())
-        #     messages.success(request, '로그인 되었습니다.')
-        #     return redirect((request.GET.get("next") or request.POST.get("next")) or "main")
-        # else:
-        #     messages.warning(request, '아이디 또는 비밀번호를 잘못 입력했습니다.')
+        #     data = {
+        #         "username": "",
+        #         "email": request.POST['username'],
+        #         "password": request.POST['password'],
+        #     }
+        #     res = requests.post(url, headers=headers, data=data).json()
+        #     print(res)
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            messages.success(request, '로그인 되었습니다.')
+            return redirect((request.GET.get("next") or request.POST.get("next")) or "main")
+        else:
+            messages.warning(request, '아이디 또는 비밀번호를 잘못 입력했습니다.')
     else:
         form = AuthenticationForm()
     context = {
