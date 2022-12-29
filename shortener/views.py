@@ -34,6 +34,7 @@ def shortener(request):
             return Response(serializer.data)
 
 def convert():
+    # base-62 인코딩
     encoding = ['a', 'b', 'c', 'd', 'e', 'f', 'g',
                 'h', 'i', 'j', 'k', 'l', 'm', 'n',
                 'o', 'p', 'q', 'r', 's', 't', 'u',
@@ -48,6 +49,6 @@ def convert():
     while True:
         new_url = ''.join(random.sample(encoding,8))
         try:
-            url = Url.objects.get(new_link=new_url)
+            url = Url.objects.get(new_link=new_url) # 단축 URL (62**8개)
         except:
             return new_url
