@@ -16,9 +16,3 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': '비밀번호',
             'password2': '비밀번호확인',
         }
-
-class CustomAuthenticationForm(AuthenticationForm):
-    username = UsernameField(
-        label='이메일',
-        widget=forms.TextInput(attrs={'autofocus': True})
-    )
